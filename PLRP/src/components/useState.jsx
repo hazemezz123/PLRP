@@ -7,7 +7,7 @@ const Counter = () => {
     setCounter((prev) => prev + 1);
   };
   const decrement = () => {
-    setCounter((prev) => prev - 1);
+    setCounter((prev) => (prev < 1 ? prev : prev - 1));
   };
   return (
     <div style={{ width: "%100", margin: "40px" }}>
