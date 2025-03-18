@@ -2,3 +2,10 @@ body {
   background-color: #242424 !important;
   color: aliceblue !important;
 }
+.box {
+  padding: 25px;
+  border: 4px solid #fff;
+}
+h2 {
+  color: yellow !important;
+}
