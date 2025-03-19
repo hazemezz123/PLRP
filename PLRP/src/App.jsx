@@ -1,34 +1,35 @@
-import React from "react";
-import ProfileCard from "./components/Info";
+import React, { useState, createContext } from "react";
+import Children from "./components/Children";
+import "./styles/context-components.css";
 
-function App() {
+export const ThemeContext = createContext();
+export const LanguageContext = createContext();
+
+const App = () => {
+  const [theme, setTheme] = useState("light");
+  const [language, setLanguage] = useState("English");
+
   return (
-    <div className="container d-flex flex-wrap justify-content-center gap-4 mt-5">
-      <ProfileCard
-        name="Ahmed Khaled"
-        age={22}
-        jobTitle="Frontend Developer"
-        bio="I love coding and UI/UX design."
-        image="https://randomuser.me/api/portraits/men/32.jpg"
-      />
-
-      <ProfileCard
-        name="Sara Ali"
-        age={25}
-        jobTitle="Data Scientist"
-        bio="Passionate about AI and Machine Learning."
-        image="https://randomuser.me/api/portraits/women/45.jpg"
-      />
-
-      <ProfileCard
-        name="Omar Hassan"
-        age={28}
-        jobTitle="Backend Engineer"
-        bio="I enjoy working with databases and APIs."
-        image="https://randomuser.me/api/portraits/men/76.jpg"
-      />
-    </div>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <LanguageContext.Provider value={{ language, setLanguage }}>
+        <div className="app-container">
+          <div className="app-header">
+            <h1>Theme & Language Settings</h1>
+            <button
+              className="reset-button"
+              onClick={() => {
+                setTheme("light");
+                setLanguage("English");
+              }}
+            >
+              Reset Settings
+            </button>
+          </div>
+          <Children />
+        </div>
+      </LanguageContext.Provider>
+    </ThemeContext.Provider>
   );
-}
+};
 
 export default App;
